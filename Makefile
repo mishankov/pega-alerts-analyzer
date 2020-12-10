@@ -23,6 +23,9 @@ run-api:
 		gunicorn --chdir src/api/ main:app -k uvicorn.workers.UvicornWorker; \
 	)
 
+run-client-dev:
+	vue serve src/client/App.vue
+
 build-local:
 	docker build . -t gpetb
 
