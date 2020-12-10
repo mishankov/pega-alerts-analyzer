@@ -26,8 +26,11 @@ run-api:
 build-local:
 	docker build . -t gpetb
 
-black: 
-	black src/api
+black:
+	(\
+		. src/api/venv/bin/activate; \
+		black src/api; \
+	)
 
 commit-all: black
 ifdef m
