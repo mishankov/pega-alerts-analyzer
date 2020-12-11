@@ -31,7 +31,7 @@ build-local:
 
 lint:
 	(\
-		npm run lint --prefix client/ \
+		npm run lint --prefix client/; \
 		. api/venv/bin/activate; \
 		black api; \
 	)
