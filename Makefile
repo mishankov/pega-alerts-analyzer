@@ -29,21 +29,20 @@ run-client-dev:
 build-local:
 	docker build . -t gpetb
 
-black:
+lint:
 	(\
+		npm run lint --prefix client/ \
 		. api/venv/bin/activate; \
 		black api; \
 	)
 
-commit-all: black
+commit-all: lint
 ifdef m
 	git add .
 	git commit -m "${m}"
 endif
 
-push-all: black
+push-all: commit-all
 ifdef m
-	git add .
-	git commit -m "${m}"
 	git push
 endif
