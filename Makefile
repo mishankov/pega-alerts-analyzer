@@ -1,38 +1,38 @@
 install-api:
 	( \
-		python3 -m venv src/api/venv; \
-		. src/api/venv/bin/activate; \
+		python3 -m venv api/venv; \
+		. api/venv/bin/activate; \
 		pip3 install --upgrade pip; \
-		pip3 install -r src/api/requirements.txt; \
+		pip3 install -r api/requirements.txt; \
 	)
 
 install-client:
-	(echo "Install client")
+	npm install --prefix client/
 
 install: install-api install-client
 
 run-api-dev:
 	( \
-		. src/api/venv/bin/activate; \
-		uvicorn --app-dir src/api/ --reload main:app; \
+		. api/venv/bin/activate; \
+		uvicorn --app-dir api/ --reload main:app; \
 	)
 
 run-api:
 	( \
-		. src/api/venv/bin/activate; \
-		gunicorn --chdir src/api/ main:app -k uvicorn.workers.UvicornWorker; \
+		. api/venv/bin/activate; \
+		gunicorn --chdir api/ main:app -k uvicorn.workers.UvicornWorker; \
 	)
 
 run-client-dev:
-	vue serve src/client/App.vue
+	npm run serve --prefix client/
 
 build-local:
 	docker build . -t gpetb
 
 black:
 	(\
-		. src/api/venv/bin/activate; \
-		black src/api; \
+		. api/venv/bin/activate; \
+		black api; \
 	)
 
 commit-all: black
