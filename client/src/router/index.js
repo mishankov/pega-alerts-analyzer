@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Alerts from '../components/Alerts.vue';
+import AlertsUpload from '../components/AlertsUpload.vue';
 
 Vue.use(VueRouter);
 
@@ -23,6 +24,11 @@ const routes = [
     path: '/alerts',
     name: 'Alerts',
     component: Alerts,
+  },
+  {
+    path: '/alertsupload',
+    name: 'AlertsUpload',
+    component: AlertsUpload,
   },
 ];
 
