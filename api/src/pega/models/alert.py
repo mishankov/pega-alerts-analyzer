@@ -1,6 +1,8 @@
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+
+from .common import YN
 
 
 class Alert(BaseModel):
@@ -15,7 +17,7 @@ class Alert(BaseModel):
     workPool: Optional[str]
     ruleApplicationNameVersion: Optional[str]
     encodedRuleset: Optional[str]
-    checkoutEnabled: Optional[str]  # Y/N
+    checkoutEnabled: Optional[YN]
     interactionNumber: Optional[str]
     correlationId: Optional[str]
     sequence: Optional[int]

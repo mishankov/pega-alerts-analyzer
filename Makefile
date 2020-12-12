@@ -1,3 +1,6 @@
+venv:
+	(. api/venv/bin/activate)
+
 install-api:
 	( \
 		python3 -m venv api/venv; \
@@ -14,13 +17,13 @@ install: install-api install-client
 run-api-dev:
 	( \
 		. api/venv/bin/activate; \
-		uvicorn --app-dir api/ --reload main:app; \
+		uvicorn --app-dir api/src/ --reload main:app; \
 	)
 
 run-api:
 	( \
 		. api/venv/bin/activate; \
-		gunicorn --chdir api/ main:app -k uvicorn.workers.UvicornWorker; \
+		gunicorn --chdir api/src/ main:app -k uvicorn.workers.UvicornWorker; \
 	)
 
 run-client-dev:
