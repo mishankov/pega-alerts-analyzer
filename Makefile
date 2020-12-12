@@ -29,12 +29,16 @@ run-client-dev:
 build-local:
 	docker build . -t gpetb
 
-lint:
+lint-api:
 	(\
-		npm run lint --prefix client/; \
 		. api/venv/bin/activate; \
 		black api; \
 	)
+
+lint-client:
+	npm run lint --prefix client
+
+lint: lint-api lint-client
 
 commit-all: lint
 ifdef m
