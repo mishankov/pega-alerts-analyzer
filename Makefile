@@ -1,6 +1,3 @@
-venv:
-	(. api/venv/bin/activate)
-
 install-api:
 	( \
 		python3 -m venv api/venv; \
@@ -17,7 +14,7 @@ install: install-api install-client
 run-api-dev:
 	( \
 		. api/venv/bin/activate; \
-		uvicorn --app-dir api/src/ --reload main:app; \
+		api/venv/bin/uvicorn --app-dir api/src/ --reload main:app; \
 	)
 
 run-api:
@@ -35,7 +32,7 @@ build-local:
 lint-api:
 	(\
 		. api/venv/bin/activate; \
-		black api; \
+		api/venv/bin/black api; \
 	)
 
 lint-client:

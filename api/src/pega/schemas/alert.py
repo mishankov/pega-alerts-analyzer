@@ -5,10 +5,11 @@ from pydantic import BaseModel, Field
 from .common import YN
 
 
-class Alert(BaseModel):
+class AlertBase(BaseModel):
     # https://community.pega.com/knowledgebase/articles/application-development/84/alert-format
     timestamp: Optional[str]
     version: Optional[str]
+    messageId: Optional[str]
     KPIValue: Optional[int]
     KPIThreshold: Optional[int]
     serverId: Optional[str]
@@ -37,3 +38,16 @@ class Alert(BaseModel):
     pegaStack: Optional[str]
     parameterPage: Optional[str]
     line: Optional[str]
+
+    fileName: Optional[str]
+
+
+class AlertCreate(AlertBase):
+    pass
+
+
+class Alert(AlertBase):
+    id: Optional[int]
+
+    class Config:
+        orm_mode = True

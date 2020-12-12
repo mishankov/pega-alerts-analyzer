@@ -3,14 +3,16 @@
     <table>
       <thead>
         <tr>
-          <th>Correlation Id</th>
+          <th>File</th>
+          <th>Message Id</th>
           <th>KPI Threshold</th>
           <th>KPI Value</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(alert, index) in alerts" :key="index">
-          <td>{{ alert.correlationId }}</td>
+          <td>{{ alert.fileName }}</td>
+          <td>{{ alert.messageId }}</td>
           <td>{{ alert.KPIThreshold }}</td>
           <td>{{ alert.KPIValue }}</td>
         </tr>
