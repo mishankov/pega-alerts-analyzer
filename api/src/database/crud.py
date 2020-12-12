@@ -1,3 +1,5 @@
+from typing import List
+
 from sqlalchemy.orm import Session
 
 from . import models
@@ -19,3 +21,10 @@ def create_alert(db: Session, alert: schemas.alert.AlertCreate):
     db.commit()
     db.refresh(db_alert)
     return db_alert
+
+
+def create_alerts(db: Session, alerts: List[schemas.alert.AlertCreate]):
+    for alert in alerts:
+        db_alert = models.PegaAlert(**alert.dict())
+        db.add(db_alert)
+    db.commit()
