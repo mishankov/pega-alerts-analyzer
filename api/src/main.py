@@ -8,6 +8,7 @@ from sqlalchemy.orm import Session
 from pega.schemas.alert import Alert, AlertCreate
 from database import crud, models
 from database.database import SessionLocal, engine
+from models.file import APIFile
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -58,3 +59,10 @@ def upload_alerts_file(file: UploadFile = File(...), db: Session = Depends(get_d
     crud.create_alerts(db, alerts)
 
     return {"filename": file.filename, "count": len(lines)}
+
+
+@app.get("/alerts/files", response_model=List[APIFile])
+def get_alerts_files(db: Session = Depends(get_db)):
+    return [
+        APIFile(name=name, count=count) for name, count in crud.get_alerts_files(db)
+    ]

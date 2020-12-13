@@ -1,2 +1,6 @@
 # pega-alerts-analyzer
-Pega alerts analyzer
+
+- FastAPI
+- SQLAlchemy
+- Vue.js
+- [tobe] Tailwind CSS
